@@ -64,21 +64,29 @@
         return $csv_buffer;
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $csv_data = file_get_contents($_FILES['csv_file']['tmp_name']);
-        $class_time = $_POST['class_time'];
-        $class_start_time = $_POST['start_time_hour'] . ':' . $_POST['start_time_minute'] . ':00';
-        $class_end_time = $_POST['end_time_hour'] . ':' . $_POST['end_time_minute'] . ':00';
-        [$new_header, $new_data] = analyze_csv($csv_data, $class_time, $class_start_time, $class_end_time);
-        $new_csv_data = generate_csv($new_header, $new_data);
-        $filename = 'new_csv_file.csv';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csv_data = file_get_contents($_FILES['csv_file']['tmp_name']);
+    $class_time = $_POST['class_time'];
+    $class_start_time = $_POST['start_time_hour'] . ':' . $_POST['start_time_minute'] . ':00';
+    $class_end_time = $_POST['end_time_hour'] . ':' . $_POST['end_time_minute'] . ':00';
+    [$new_header, $new_data] = analyze_csv($csv_data, $class_time, $class_start_time, $class_end_time);
+    $new_csv_data = generate_csv($new_header, $new_data);
+    $filename = 'new_csv_file.csv';
 
-        // ダウンロードするファイル名を指定する
-        header('Content-Disposition: attachment; filename="' . $filename . '"');
+    // 出力バッファリングをクリアする
+    ob_clean();
+    flush();
 
-        // ファイルのMIMEタイプを指定する
-        header('Content-Type: text/csv');
+    // ダウンロードするファイル名を指定する
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
 
-        // ファイルの内容を出力する
-        echo mb_convert_encoding($new_csv_data, "SJIS", "UTF-8");
-    }
+    // ファイルのMIMEタイプを指定する
+    header('Content-Type: text/csv');
+
+    // ファイルの内容を出力する
+    echo mb_convert_encoding($new_csv_data, "SJIS", "UTF-8");
+
+    // スクリプトの終了
+    exit;
+}
+
