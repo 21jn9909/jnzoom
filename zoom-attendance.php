@@ -1,4 +1,7 @@
     <?php
+    ob_end_clean(); // 既存のバッファをクリア
+    ini_set('output_buffering', 'off'); // 出力バッファリングを無効化
+    ini_set('zlib.output_compression', 'off'); // zlib圧縮を無効化
     mb_internal_encoding("UTF-8");
     function analyze_csv($csv_data, $class_time, $class_start_time, $class_end_time)
     {
