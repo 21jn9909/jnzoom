@@ -22,7 +22,7 @@
     <div class="form-group">
       <label>授業形態：</label>
       <div class="form-check">
-        <input type="radio" name="class_time" value="12" class="form-check-input">
+        <input type="radio" name="class_time" value="12" class="form-check-input" checked>
         <label class="form-check-label">2コマ連続授業（例：1,2限授業）</label>
       </div>
       <div class="form-check">
