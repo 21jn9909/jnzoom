@@ -14,7 +14,7 @@
 <body class="container py-4">
   <h1 class="mb-4">Zoom出席確認フォーム</h1>
 
-  <form action="zoom-attendance.php" method="post" enctype="multipart/form-data">
+  <form action="zoom-attendancefile.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label>ファイル選択：</label>
       <input type="file" name="csv_file" class="form-control-file">
