@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'jnzoom'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_884847B5A66D44AD9263FAD45A89DAFF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DF168BFFCD624AF4A9FEAC83DE67EC76 }}
           package: .
